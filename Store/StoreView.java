@@ -74,8 +74,13 @@ public class StoreView {
         browsePanel.setLayout(new BorderLayout());
         browsePanel.setBackground(Color.WHITE);
         JPanel headerPanel = new JPanel();
-        JPanel bodyPanel = new JPanel(new GridLayout(3, 2));
+        JPanel bodyPanel = new JPanel(new GridLayout(3,2));
         JPanel footerPanel = new JPanel();
+
+        JButton homeButton = new JButton("Home");
+        JButton catalogButton = new JButton("Catalog");
+        JButton checkOut = new JButton("Checkout");
+        JButton seeCart = new JButton("See Cart");
 
         /**
          * Images of products on the browse menu
@@ -87,19 +92,19 @@ public class StoreView {
         label1 = new JLabel(image1);
         bodyPanel.add(label1);
 
-        image2 = new ImageIcon(getClass().getResource("bananas.jpg"));
+        image2 = new ImageIcon(getClass().getResource("avocados.jpg"));
         label2 = new JLabel(image2);
         bodyPanel.add(label2);
 
-        image3 = new ImageIcon(getClass().getResource("iphone.png"));
+        image3 = new ImageIcon(getClass().getResource("bananas.jpg"));
         label3 = new JLabel(image3);
         bodyPanel.add(label3);
 
-        image4 = new ImageIcon(getClass().getResource("ipad.jpg"));
+        image4 = new ImageIcon(getClass().getResource("oranges.jpg"));
         label4 = new JLabel(image4);
         bodyPanel.add(label4);
 
-        image5 = new ImageIcon(getClass().getResource("macbook.jpg"));
+        image5 = new ImageIcon(getClass().getResource("watermelons.jpg"));
         label5 = new JLabel(image5);
         bodyPanel.add(label5);
 
@@ -110,9 +115,14 @@ public class StoreView {
         browsePanel.add(bodyPanel, BorderLayout.CENTER);
         browsePanel.add(footerPanel, BorderLayout.PAGE_END);
 
+        homeButton.setPreferredSize(new Dimension(100, 25));
+        catalogButton.setPreferredSize(new Dimension(100, 25));
+        checkOut.setPreferredSize(new Dimension(100, 25));
+        seeCart.setPreferredSize(new Dimension(100, 25));
         headerPanel.setPreferredSize(new Dimension(500, 100));
         bodyPanel.setPreferredSize(new Dimension(500, 300));
-
+        headerPanel.add(homeButton);
+        headerPanel.add(catalogButton);
         headerPanel.add(checkOut);
         headerPanel.add(seeCart);
         browsePanel.add(headerPanel, BorderLayout.PAGE_START);
@@ -204,4 +214,3 @@ public class StoreView {
         sw.displayGUI();
     }
 }
-
