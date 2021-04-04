@@ -21,7 +21,6 @@ public class StoreView {
     private JFrame checkOut;
 
     private static StoreManager storeManager;
-
     private static int cartID;
 
     private ShoppingCart currentCart = new ShoppingCart();
@@ -77,7 +76,6 @@ public class StoreView {
 
         image1 = new ImageIcon(getClass().getResource("apples.jpg"));
         label1 = new JLabel(image1);
-
         label1.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         //gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -110,8 +108,6 @@ public class StoreView {
         apples.setPreferredSize(new Dimension(250,50));
         label1.add(apples);
 
-
-
         /**
          * mainPanel adds header, body and footer
          */
@@ -137,7 +133,6 @@ public class StoreView {
         this.seeCart.setVisible(true);
 
     }
-
 
     public ShoppingCart browseMenuGUI(ShoppingCart currentCart){
         /**
@@ -166,11 +161,11 @@ public class StoreView {
         /**
          * Initialize all labels
          */
-        JLabel apples = new JLabel("Apples");
-        JLabel avocados = new JLabel("Avocados");
-        JLabel bananas = new JLabel("Bananas");
-        JLabel oranges = new JLabel("Oranges");
-        JLabel watermelons = new JLabel("Watermelons");
+        JLabel apples = new JLabel("Apples, ID: 101, Price: 1.0");
+        JLabel avocados = new JLabel("Avocados, ID: 202, Price: 2.0");
+        JLabel bananas = new JLabel("Bananas, ID: 303, Price: 3.0");
+        JLabel oranges = new JLabel("Oranges, ID: 404, Price: 4.0");
+        JLabel watermelons = new JLabel("Watermelons, ID: 505, Price: 5.0");
 
         /**
          * Images of products on the browse menu
@@ -178,15 +173,16 @@ public class StoreView {
         ImageIcon image1, image2, image3, image4, image5;
         JLabel label1, label2, label3, label4, label5;
 
+        //================================apples========================//
+
         image1 = new ImageIcon(getClass().getResource("apples.jpg"));
         label1 = new JLabel(image1);
 
         label1.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        //gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-
         label1.add(add, gbc);
+
         // add the action listener
         add.addActionListener(new ActionListener() {
 
@@ -207,11 +203,13 @@ public class StoreView {
                 System.out.println(currentCart.getItems());
             }
         });
-
-
+        
         bodyPanel.add(label1);
         apples.setPreferredSize(new Dimension(250,50));
         label1.add(apples);
+        label1.setBounds(2, 2, 250,50);
+
+        //================================avocados========================//
 
         image2 = new ImageIcon(getClass().getResource("avocados.jpg"));
         label2 = new JLabel(image2);
@@ -245,6 +243,7 @@ public class StoreView {
 
         avocados.setPreferredSize(new Dimension(250,50));
         label2.add(avocados);
+        label2.setBounds(2, 2, 250,50);
 
         //================================bananas========================//
 
@@ -279,6 +278,7 @@ public class StoreView {
 
         bananas.setPreferredSize(new Dimension(250,50));
         label3.add(bananas);
+        label3.setBounds(2, 2, 250,50);
 
         //================================oranges========================//
 
@@ -314,6 +314,7 @@ public class StoreView {
 
         oranges.setPreferredSize(new Dimension(250,50));
         label4.add(oranges);
+        label4.setBounds(2, 2, 250,50);
 
         //================================watermelons========================//
 
@@ -350,6 +351,7 @@ public class StoreView {
 
         watermelons.setPreferredSize(new Dimension(250,50));
         label5.add(watermelons);
+        label5.setBounds(2, 2, 250,50);
 
         /**
          * mainPanel adds header, body and footer
@@ -421,7 +423,7 @@ public class StoreView {
 
 
 
-        StoreView sv1 = new StoreView(manager, cardID);
+        //StoreView sv1 = new StoreView(manager, cardID);
         //StoreView sv2 = new StoreView(manager, manager.assignNewCartID());
         //StoreView sv3 = new StoreView(manager, manager.assignNewCartID());
 
