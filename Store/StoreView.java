@@ -14,7 +14,6 @@ import java.awt.event.WindowEvent;
 /**
  * This class will keep track the states of Store.StoreView
  */
-
 public class StoreView {
     private JFrame main;
     private JFrame browse;
@@ -28,44 +27,6 @@ public class StoreView {
         this.checkOut = new JFrame("Checkout");
     }
 
-    /*public void catalogGUI() {
-        *//**
-         * Initialize all panels Menu buttons
-         *//*
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.setBackground(Color.WHITE);
-        JPanel headerPanel = new JPanel();
-        JPanel bodyPanel = new JPanel();
-        JPanel footerPanel = new JPanel();
-        JButton homeButton = new JButton("Home");
-        JButton catalogButton = new JButton("Catalog");
-        JButton checkOut = new JButton("Checkout");
-        JButton seeCart = new JButton("See Cart");
-
-        *//**
-         * mainPanel adds header, body and footer
-         *//*
-        mainPanel.add(headerPanel, BorderLayout.PAGE_START);
-        mainPanel.add(bodyPanel, BorderLayout.CENTER);
-        mainPanel.add(footerPanel, BorderLayout.PAGE_END);
-
-        homeButton.setPreferredSize(new Dimension(100, 25));
-        catalogButton.setPreferredSize(new Dimension(100, 25));
-        checkOut.setPreferredSize(new Dimension(100, 25));
-        seeCart.setPreferredSize(new Dimension(100, 25));
-        headerPanel.setPreferredSize(new Dimension(500, 100));
-        bodyPanel.setPreferredSize(new Dimension(500, 300));
-        headerPanel.add(homeButton);
-        headerPanel.add(catalogButton);
-        headerPanel.add(checkOut);
-        headerPanel.add(seeCart);
-        mainPanel.add(headerPanel, BorderLayout.PAGE_START);
-        this.browse.add(mainPanel);
-        this.browse.setSize(1500, 500);
-        this.browse.setVisible(true);
-    }*/
-
     public void browseMenuGUI(){
         /**
          * Initialize all browse panels
@@ -76,11 +37,28 @@ public class StoreView {
         JPanel headerPanel = new JPanel();
         JPanel bodyPanel = new JPanel(new GridLayout(3,2));
         JPanel footerPanel = new JPanel();
-
+        JPanel backGround = new JPanel();
+        backGround.setForeground(Color.WHITE);
+        
+        /**
+         * Initialize all buttons
+         */
         JButton homeButton = new JButton("Home");
         JButton catalogButton = new JButton("Catalog");
         JButton checkOut = new JButton("Checkout");
         JButton seeCart = new JButton("See Cart");
+
+        JButton add = new JButton(" + ");
+        JButton subtract = new JButton(" - ");
+
+        /**
+         * Initialize all labels
+         */
+        JLabel apples = new JLabel("Apples");
+        JLabel avocados = new JLabel("Avocados");
+        JLabel bananas = new JLabel("Bananas");
+        JLabel oranges = new JLabel("Oranges");
+        JLabel watermelons = new JLabel("Watermelons");
 
         /**
          * Images of products on the browse menu
@@ -91,6 +69,8 @@ public class StoreView {
         image1 = new ImageIcon(getClass().getResource("apples.jpg"));
         label1 = new JLabel(image1);
         bodyPanel.add(label1);
+        apples.setPreferredSize(new Dimension(250,50));
+        label1.add(apples);
 
         image2 = new ImageIcon(getClass().getResource("avocados.jpg"));
         label2 = new JLabel(image2);
@@ -214,3 +194,4 @@ public class StoreView {
         sw.displayGUI();
     }
 }
+
