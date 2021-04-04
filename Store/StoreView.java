@@ -20,14 +20,126 @@ public class StoreView {
     private JFrame seeCart;
     private JFrame checkOut;
 
+    private static StoreManager storeManager;
+
+    private static int cartID;
+
+    private ShoppingCart currentCart = new ShoppingCart();
+
     public StoreView() {
         this.main = new JFrame("Welcome to the fruit shop");
         this.browse = new JFrame("Browse");
-        this.seeCart = new JFrame("See Cart");
+        this.seeCart = new JFrame("Cart items");
         this.checkOut = new JFrame("Checkout");
     }
+    public StoreView(StoreManager storeManager, int cartID){
+        this.storeManager = storeManager;
+        this.cartID = cartID;
+    }
+    public void seeCartGUi(ShoppingCart currentCart){
+        /**
+         * Initialize all cart panels
+         */
+        JPanel seeCartPanel = new JPanel();
+        seeCartPanel.setLayout(new BorderLayout());
+        seeCartPanel.setBackground(Color.RED);
+        JPanel headerPanel = new JPanel();
+        JPanel bodyPanel = new JPanel(new GridLayout(3,2));
+        JPanel footerPanel = new JPanel();
+        JPanel backGround = new JPanel();
+        backGround.setForeground(Color.WHITE);
 
-    public void browseMenuGUI(){
+        /**
+         * Initialize all buttons
+         */
+        JButton homeButton = new JButton("Home");
+        JButton catalogButton = new JButton("Browse");
+        JButton checkOut = new JButton("Checkout");
+        JButton seeCartButton = new JButton("See Cart");
+
+        JButton add = new JButton(" + ");
+        JButton subtract = new JButton(" - ");
+
+        /**
+         * Initialize all labels
+         */
+        JLabel apples = new JLabel("Apples");
+        JLabel avocados = new JLabel("Avocados");
+        JLabel bananas = new JLabel("Bananas");
+        JLabel oranges = new JLabel("Oranges");
+        JLabel watermelons = new JLabel("Watermelons");
+
+        /**
+         * Images of products on the browse menu
+         */
+        ImageIcon image1, image2, image3, image4, image5;
+        JLabel label1, label2, label3, label4, label5;
+
+        image1 = new ImageIcon(getClass().getResource("apples.jpg"));
+        label1 = new JLabel(image1);
+
+        label1.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        //gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        label1.add(add, gbc);
+        // add the action listener
+        add.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentCart.addToCart(101, 1);
+                System.out.println(currentCart.getItems());
+            }
+        });
+        label1.add(subtract, gbc);
+        subtract.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentCart.removeFromCart(101, 1);
+                System.out.println(currentCart.getItems());
+            }
+        });
+
+
+        bodyPanel.add(label1);
+        apples.setPreferredSize(new Dimension(250,50));
+        label1.add(apples);
+
+
+
+        /**
+         * mainPanel adds header, body and footer
+         */
+        seeCartPanel.add(headerPanel, BorderLayout.PAGE_START);
+        seeCartPanel.add(bodyPanel, BorderLayout.CENTER);
+        seeCartPanel.add(footerPanel, BorderLayout.PAGE_END);
+
+        homeButton.setPreferredSize(new Dimension(100, 25));
+        catalogButton.setPreferredSize(new Dimension(100, 25));
+        checkOut.setPreferredSize(new Dimension(100, 25));
+        seeCartButton.setPreferredSize(new Dimension(100, 25));
+        headerPanel.setPreferredSize(new Dimension(500, 100));
+        bodyPanel.setPreferredSize(new Dimension(500, 300));
+        headerPanel.add(homeButton);
+        headerPanel.add(catalogButton);
+        headerPanel.add(checkOut);
+        headerPanel.add(seeCartButton);
+
+
+        seeCartPanel.add(headerPanel, BorderLayout.PAGE_START);
+        this.seeCart.add(seeCartPanel);
+        this.seeCart.setSize(1500, 500);
+        this.seeCart.setVisible(true);
+
+    }
+
+
+    public ShoppingCart browseMenuGUI(ShoppingCart currentCart){
         /**
          * Initialize all browse panels
          */
@@ -39,7 +151,7 @@ public class StoreView {
         JPanel footerPanel = new JPanel();
         JPanel backGround = new JPanel();
         backGround.setForeground(Color.WHITE);
-        
+
         /**
          * Initialize all buttons
          */
@@ -68,25 +180,176 @@ public class StoreView {
 
         image1 = new ImageIcon(getClass().getResource("apples.jpg"));
         label1 = new JLabel(image1);
+
+        label1.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        //gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        label1.add(add, gbc);
+        // add the action listener
+        add.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentCart.addToCart(101, 1);
+                System.out.println(currentCart.getItems());
+            }
+        });
+        label1.add(subtract, gbc);
+        subtract.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentCart.removeFromCart(101, 1);
+                System.out.println(currentCart.getItems());
+            }
+        });
+
+
         bodyPanel.add(label1);
         apples.setPreferredSize(new Dimension(250,50));
         label1.add(apples);
 
         image2 = new ImageIcon(getClass().getResource("avocados.jpg"));
         label2 = new JLabel(image2);
+
+        label2.setLayout(new GridBagLayout());
+        JButton add2 = new JButton(" + ");
+        JButton subtract2 = new JButton(" - ");
+
+        label2.add(add2, gbc);
+        add2.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentCart.addToCart(202, 1);
+                System.out.println(currentCart.getItems());
+            }
+        });
+        label2.add(subtract2, gbc);
+        subtract2.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentCart.removeFromCart(202, 1);
+                System.out.println(currentCart.getItems());
+            }
+        });
+
         bodyPanel.add(label2);
+
+        avocados.setPreferredSize(new Dimension(250,50));
+        label2.add(avocados);
+
+        //================================bananas========================//
 
         image3 = new ImageIcon(getClass().getResource("bananas.jpg"));
         label3 = new JLabel(image3);
+
+        label3.setLayout(new GridBagLayout());
+        JButton add3 = new JButton(" + ");
+        JButton subtract3 = new JButton(" - ");
+
+        label3.add(add3, gbc);
+        add3.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentCart.addToCart(303, 1);
+                System.out.println(currentCart.getItems());
+            }
+        });
+        label3.add(subtract3, gbc);
+        subtract3.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentCart.removeFromCart(303, 1);
+                System.out.println(currentCart.getItems());
+            }
+        });
         bodyPanel.add(label3);
+
+        bananas.setPreferredSize(new Dimension(250,50));
+        label3.add(bananas);
+
+        //================================oranges========================//
 
         image4 = new ImageIcon(getClass().getResource("oranges.jpg"));
         label4 = new JLabel(image4);
+
+        label4.setLayout(new GridBagLayout());
+        JButton add4 = new JButton(" + ");
+        JButton subtract4 = new JButton(" - ");
+
+        label4.add(add4, gbc);
+        add4.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentCart.addToCart(404, 1);
+                System.out.println(currentCart.getItems());
+            }
+        });
+        label4.add(subtract4, gbc);
+        subtract4.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentCart.removeFromCart(404, 1);
+                System.out.println(currentCart.getItems());
+            }
+        });
+
         bodyPanel.add(label4);
+
+        oranges.setPreferredSize(new Dimension(250,50));
+        label4.add(oranges);
+
+        //================================watermelons========================//
+
 
         image5 = new ImageIcon(getClass().getResource("watermelons.jpg"));
         label5 = new JLabel(image5);
+
+        label5.setLayout(new GridBagLayout());
+        JButton add5 = new JButton(" + ");
+        JButton subtract5 = new JButton(" - ");
+
+        label5.add(add5, gbc);
+        add5.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentCart.addToCart(505, 1);
+                System.out.println(currentCart.getItems());
+            }
+        });
+        label5.add(subtract5, gbc);
+        subtract5.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                currentCart.removeFromCart(505, 1);
+                System.out.println(currentCart.getItems());
+            }
+        });
+
         bodyPanel.add(label5);
+
+        watermelons.setPreferredSize(new Dimension(250,50));
+        label5.add(watermelons);
 
         /**
          * mainPanel adds header, body and footer
@@ -105,13 +368,73 @@ public class StoreView {
         headerPanel.add(catalogButton);
         headerPanel.add(checkOut);
         headerPanel.add(seeCart);
+        seeCart.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                seeCartGUi(currentCart);
+            }
+        });
+
         browsePanel.add(headerPanel, BorderLayout.PAGE_START);
         this.browse.add(browsePanel);
         this.browse.setSize(1500, 500);
         this.browse.setVisible(true);
+
+        return currentCart;
     }
 
     public void mainMenuGUI() {
+
+        /**
+         * the first product
+         */
+        Product apple = new Product("Apples", 101, 1.0);
+        Product banana = new Product("Avocados", 202, 2.0);
+        Product iPhone = new Product("Bananas", 303, 3.0);
+        Product iPad = new Product("Oranges",404 , 4.0);
+        Product MacBook = new Product("Watermelons", 505, 5.0);
+
+        /**
+         * the inventory
+         */
+        Inventory inventor1 = new Inventory(apple, 10);
+        Inventory inventor2 = new Inventory(banana, 10);
+        Inventory inventor3 = new Inventory(iPhone, 10);
+        Inventory inventor4 = new Inventory(iPad, 10);
+        Inventory inventor5 = new Inventory(MacBook, 10);
+
+        /**
+         * the manager for the Store.StoreView
+         */
+        StoreManager manager = new StoreManager();
+
+
+
+
+
+        //ShoppingCart browseCart = new ShoppingCart();
+
+
+        int cardID = manager.assignNewCartID();
+
+
+
+        StoreView sv1 = new StoreView(manager, cardID);
+        //StoreView sv2 = new StoreView(manager, manager.assignNewCartID());
+        //StoreView sv3 = new StoreView(manager, manager.assignNewCartID());
+
+        manager.addInventory(inventor1);
+        manager.addInventory(inventor2);
+        manager.addInventory(inventor3);
+        manager.addInventory(inventor4);
+        manager.addInventory(inventor5);
+
+
+
+        //===============GUI code==========================//
+
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.setBackground(Color.WHITE);
@@ -128,29 +451,41 @@ public class StoreView {
         /**
          * Cart Menu on the main page
          */
-        JMenuBar mb = new JMenuBar();
-        JMenu menuCart = new JMenu("Cart");
-        JMenuItem checkoutItem = new JMenuItem("Checkout");
-        JMenuItem seeCartItem = new JMenuItem("See Cart");
-        menuCart.add(checkoutItem);
-        menuCart.add(seeCartItem);
-        mb.add(menuCart);
+//        JMenuBar mb = new JMenuBar();
+//        JMenu menuCart = new JMenu("Cart");
+//        JMenuItem checkoutItem = new JMenuItem("Checkout");
+//        JMenuItem seeCartItem = new JMenuItem("See Cart");
+//        menuCart.add(checkoutItem);
+//        menuCart.add(seeCartItem);
+//        mb.add(menuCart);
 
         /**
          * Body Panel on the main panel in main menu
          */
-        JLabel show_image = new JLabel("");
-        show_image.setIcon(new ImageIcon(new ImageIcon("MainMenuPic.jpg").getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH)));
-        bodyPanel.add(show_image, BorderLayout.CENTER);
+        //JLabel show_image = new JLabel("");
+        //show_image.setIcon(new ImageIcon(new ImageIcon("fruithome.jpg.jpg").getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH)));
+        //bodyPanel.add(show_image, BorderLayout.CENTER);
+
+        //image4 = new ImageIcon(getClass().getResource("oranges.jpg"));
+        //label4 = new JLabel(image4);
+
+        ImageIcon image1 = new ImageIcon(getClass().getResource("fruithome.jpg"));
+
+        bodyPanel.setLayout(new BorderLayout());
+        JLabel label = new JLabel(image1, JLabel.CENTER);
+        bodyPanel.add(label, BorderLayout.CENTER );
+
+
+
 
         /**
          * Footer Panel of a text
          */
 
         JLabel footText = new JLabel("");
-        footText.setText("Hello and welcome to the Watch Strap Store!" +
-                "1. You have option button: 'Home', 'Catalog' or you can see the cart and checkout" +
-                "2. Click Catalog to browse! " +
+        footText.setText("Welcome to the Carleton Fruit Shop!" +
+                "1. You have option button: 'Home', 'Browse' or you can see the cart and checkout" +
+                "2. Click Browse to browse! " +
                 "3. 'Home' will be the page you are reading right now ");
         footerPanel.add(footText, BorderLayout.CENTER);
 
@@ -164,7 +499,7 @@ public class StoreView {
         bodyPanel.setPreferredSize(new Dimension(500, 300));
         headerPanel.add(homeButton);
         headerPanel.add(catalogButton);
-        headerPanel.add(mb);
+        //headerPanel.add(mb);
         mainPanel.add(headerPanel, BorderLayout.PAGE_START);
         mainPanel.add(bodyPanel, BorderLayout.CENTER);
         mainPanel.add(footerPanel, BorderLayout.PAGE_END);
@@ -176,7 +511,24 @@ public class StoreView {
         catalogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                browseMenuGUI();
+                currentCart = browseMenuGUI(currentCart);
+
+
+            }
+        });
+
+
+
+        main.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        main.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                if (JOptionPane.showConfirmDialog(main, "Are you sure you want to quit?")
+                        == JOptionPane.OK_OPTION) {
+                    // close it down!
+                    main.setVisible(false);
+                    main.dispose();
+                }
             }
         });
     }
@@ -194,4 +546,3 @@ public class StoreView {
         sw.displayGUI();
     }
 }
-
