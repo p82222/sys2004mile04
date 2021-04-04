@@ -29,19 +29,32 @@ public class StoreView {
 
     private static float total = 0;
 
+    /**
+     * Constructor for StoreView
+     */
     public StoreView() {
         this.main = new JFrame("Welcome to the fruit shop");
         this.browse = new JFrame("Browse");
         this.seeCart = new JFrame("Cart items");
         this.checkOut = new JFrame("Checkout");
     }
+
+    /**
+     * Constructor for StoreView with parameters
+     * @param storeManager
+     * @param cartID
+     */
     public StoreView(StoreManager storeManager, int cartID){
         this.storeManager = storeManager;
         this.cartID = cartID;
     }
 
-
-
+    /**
+     * Displays the browse menu where it shows all the products and their prices,
+     * able to add products to the cart
+     * @param currentCart
+     * @return ShoppingCart
+     */
     public ShoppingCart browseMenuGUI(ShoppingCart currentCart){
         /**
          * Initialize all browse panels
@@ -226,7 +239,6 @@ public class StoreView {
 
         //================================watermelons========================//
 
-
         image5 = new ImageIcon(getClass().getResource("watermelons.jpg"));
         label5 = new JLabel(image5);
 
@@ -304,6 +316,9 @@ public class StoreView {
         return currentCart;
     }
 
+    /**
+     * Displays the main menu that opens when the storeview is launched
+     */
     public void mainMenuGUI() {
 
         /**
@@ -329,27 +344,14 @@ public class StoreView {
          */
         StoreManager manager = new StoreManager();
 
-
-
-
-
-        //ShoppingCart browseCart = new ShoppingCart();
-
-
         int cardID = manager.assignNewCartID();
-
-
-
         StoreView sv1 = new StoreView(manager, cardID);
-        //StoreView sv2 = new StoreView(manager, manager.assignNewCartID());
-        //StoreView sv3 = new StoreView(manager, manager.assignNewCartID());
 
         manager.addInventory(inventor1);
         manager.addInventory(inventor2);
         manager.addInventory(inventor3);
         manager.addInventory(inventor4);
         manager.addInventory(inventor5);
-
 
 
         //===============GUI code==========================//
@@ -394,9 +396,6 @@ public class StoreView {
         JLabel label = new JLabel(image1, JLabel.CENTER);
         bodyPanel.add(label, BorderLayout.CENTER );
 
-
-
-
         /**
          * Footer Panel of a text
          */
@@ -431,12 +430,8 @@ public class StoreView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentCart = browseMenuGUI(currentCart);
-
-
             }
         });
-
-
 
         main.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         main.addWindowListener(new WindowAdapter() {
@@ -457,7 +452,6 @@ public class StoreView {
          * main, header, body, footer panels
          */
         mainMenuGUI();
-
     }
 
     public static void main(String[] args) {
@@ -465,10 +459,13 @@ public class StoreView {
         sw.displayGUI();
     }
 
+    /**
+     * Shows the products and the quantity of products that were added to the
+     * cart during the browse menu
+     * @param currentCart
+     * @return float
+     */
     public float seeCartGUi(ShoppingCart currentCart){
-
-
-
         /**
          * Initialize all cart panels
          */
@@ -525,10 +522,6 @@ public class StoreView {
         });
 
         StringBuilder iteminfo  = new StringBuilder();
-
-
-
-
         //float total = 0;
 
         for(Map.Entry mapElement : currentCart.getItems().entrySet()){
@@ -566,8 +559,6 @@ public class StoreView {
         label2.setText(info);
         //label2.setBackground(Color.RED);
 
-
-
         checkOut.addActionListener(new ActionListener() {
 
             // this method will be called when we click the button
@@ -577,12 +568,10 @@ public class StoreView {
             }
         });
 
-       // bodyPanel.add(label1);
+        // bodyPanel.add(label1);
         bodyPanel.add(label2);
         apples.setPreferredSize(new Dimension(250,50));
         label1.add(apples);
-
-
 
         /**
          * mainPanel adds header, body and footer
@@ -591,12 +580,10 @@ public class StoreView {
         seeCartPanel.add(bodyPanel, BorderLayout.CENTER);
         seeCartPanel.add(footerPanel, BorderLayout.PAGE_END);
 
-
         checkOut.setPreferredSize(new Dimension(100, 25));
         headerPanel.setPreferredSize(new Dimension(500, 100));
         bodyPanel.setPreferredSize(new Dimension(500, 300));
         headerPanel.add(checkOut);
-
 
         seeCartPanel.add(headerPanel, BorderLayout.PAGE_START);
         this.seeCart.add(seeCartPanel);
@@ -604,11 +591,13 @@ public class StoreView {
         this.seeCart.setVisible(true);
 
         return total;
-
     }
 
+    /**
+     * Checks out of the store showing the total cart price
+     * @param currentCart
+     */
     public void checkoutGUi(ShoppingCart currentCart){
-
         /**
          * Initialize all cart panels
          */
@@ -621,20 +610,13 @@ public class StoreView {
         JPanel backGround = new JPanel();
         backGround.setForeground(Color.WHITE);
 
-
-
         StringBuilder iteminfo  = new StringBuilder();
 
-
-
-
         //float total = 0;
-
         for(Map.Entry mapElement : currentCart.getItems().entrySet()){
 
             int itemID = (int) mapElement.getKey();
             int quantity = (int) mapElement.getValue();
-
 
             for(int i = 0; i< storeManager.getInventories().size(); i++){
                 for(Product p: storeManager.getInventories().get(i).getProducts().keySet()){
@@ -663,15 +645,10 @@ public class StoreView {
 
         System.out.println(iteminfo);
 
-
-
         JLabel label2 = new JLabel();
         label2.setText(info);
 
         bodyPanel.add(label2);
-
-
-
 
         /**
          * mainPanel adds header, body and footer
@@ -679,7 +656,6 @@ public class StoreView {
         seeCartPanel.add(headerPanel, BorderLayout.PAGE_START);
         seeCartPanel.add(bodyPanel, BorderLayout.CENTER);
         seeCartPanel.add(footerPanel, BorderLayout.PAGE_END);
-
 
         //checkOut.setPreferredSize(new Dimension(100, 25));
         headerPanel.setPreferredSize(new Dimension(500, 100));
@@ -699,13 +675,9 @@ public class StoreView {
             }
         });
 
-
         seeCartPanel.add(headerPanel, BorderLayout.PAGE_START);
         this.checkOut.add(seeCartPanel);
         this.checkOut.setSize(1500, 500);
         this.checkOut.setVisible(true);
-
     }
-
-
 }
