@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Map;
 
 /**
  * This class will keep track the states of Store.StoreView
@@ -21,9 +22,12 @@ public class StoreView {
     private JFrame checkOut;
 
     private static StoreManager storeManager;
+
     private static int cartID;
 
     private ShoppingCart currentCart = new ShoppingCart();
+
+    private static float total = 0;
 
     public StoreView() {
         this.main = new JFrame("Welcome to the fruit shop");
@@ -35,6 +39,9 @@ public class StoreView {
         this.storeManager = storeManager;
         this.cartID = cartID;
     }
+
+
+
     public ShoppingCart browseMenuGUI(ShoppingCart currentCart){
         /**
          * Initialize all browse panels
